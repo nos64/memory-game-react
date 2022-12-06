@@ -1,0 +1,27 @@
+.title {
+  font-size: 120px;
+  text-align: center;
+}
+
+.description {
+  font-size: 80px;
+  text-align: center;
+}
+
+.btnContainer {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  border: 2px solid red;
+  padding: 10px;
+
+  &:hover {
+    color: red;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+.header {
+  border-bottom: 4px solid $yellow-color;
+}
+
+.headerTitle {
+text-align: center;
+font-size: 30px;
+font-weight: 700;
+padding: 10px;
+color: $red-color;
+}

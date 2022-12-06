@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+
+.footer {
+  border-top: 4px solid $yellow-color;
+  font-size: 22px;
+  padding: 10px;
+}
+
+.footerContent {
+  display: flex;
+ justify-content: space-between;
+}
+
+.footerLink {
+  transition: color .3s ease-in;
+
+  &:hover {
+  color: $yellow-color;
+  }
+}
