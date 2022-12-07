@@ -1,0 +1,36 @@
+@import '../../styles/extension.scss';
+@import '../../styles/colors.scss';
+
+.resetWrapper {
+  @extend %centered;
+  flex-direction: column;
+  max-width: 250px;
+  gap: 10px;
+}
+
+.resetText {
+text-align: center;
+color: $red-color;
+font-weight: 700;
+font-size: 26px;
+}
+
+.resetBtnsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.resetBtn {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: $temptess-color;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background-color: $yellow-color;
+    color: $text-color;
+  }
+}

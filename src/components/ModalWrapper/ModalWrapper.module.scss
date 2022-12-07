@@ -1,0 +1,56 @@
+@import '../../styles/extension.scss';
+@import '../../styles/colors.scss';
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  @extend %centered;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+
+  &.active {
+    pointer-events: all;
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+.modalContent {
+  padding: 20px;
+  border-radius: 5px;
+  font-weight: 700;
+  background: linear-gradient( rgba(17, 18, 26, 0.8), rgba(71, 73, 82, 0.8));
+  box-shadow: 0px 0px 4px 1px $temptess-color;
+  transform: scale(0.5);
+  transition: all 0.3s ease-in-out;
+
+  &.modalContentActive {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .buttonsWrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modalContent {
+    font-size: 14px;
+  }
+}
