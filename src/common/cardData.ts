@@ -157,7 +157,7 @@ export const cardData = [
     isActive: false,
   },
   {
-    id: '22',
+    id: '23',
     avers: thor2,
     reverse: reverse,
     isActive: false,
