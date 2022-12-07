@@ -8,6 +8,7 @@ interface IResetGameModal {
   isResetModalActive: boolean;
   setIsResetModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const ResetGameModal: React.FC<IResetGameModal> = ({
   isResetModalActive,
   setIsResetModalActive,

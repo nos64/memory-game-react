@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './ScorePanel.module.scss';
 import ResetGameModal from '../ResetGameModal';
+import ResultsModal from '../ResultsModal';
 
 const ScorePanel = () => {
-  const [isModalActive, setModalActive] = useState(false);
   const [isResetModalActive, setIsResetModalActive] = useState(false);
+  const [isResultsModalActive, setIsResultsModalActive] = useState(false);
   return (
     <>
       <div className={styles.resultsPanel}>
@@ -31,13 +32,21 @@ const ScorePanel = () => {
         >
           Reset
         </button>
-        <button className={styles.panelButton} type="button">
+        <button
+          className={styles.panelButton}
+          type="button"
+          onClick={() => setIsResultsModalActive(true)}
+        >
           Results
         </button>
       </div>
       <ResetGameModal
         isResetModalActive={isResetModalActive}
         setIsResetModalActive={setIsResetModalActive}
+      />
+      <ResultsModal
+        isResultsModalActive={isResultsModalActive}
+        setIsResultsModalActive={setIsResultsModalActive}
       />
     </>
   );

@@ -1,0 +1,51 @@
+@import '../../styles/extension.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
+.modalContent {
+  @extend %centered;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modalTitle {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.resultsTable {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $water-color;
+}
+
+.tableHead {
+  color: $text-color;
+  font-size: 24px;
+}
+
+.tableRow {
+  @extend %centered;
+  gap: 20px;
+  border: 1px solid $water-color;
+}
+
+.tableData {
+  @include contentLimit(1);
+  text-align: center;
+  width: 120px;
+  padding: 0 20px;
+}
+
+.resultCloseButton {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: $temptess-color;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background-color: $yellow-color;
+    color: $text-color;
+  }
+}
