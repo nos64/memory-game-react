@@ -1,0 +1,31 @@
+@import '../../styles/extension.scss';
+@import '../../styles/colors.scss';
+
+.resultsPanel {
+  @extend %centered;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.paramField {
+  color: $red-color;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 0 15px;
+}
+
+.panelButton {
+  background-color: $temptess-color;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 10px;
+  transition: .3s ease-in-out;
+
+  &:hover{
+  background-color: $yellow-color;
+  color: $black-color;
+  }
+
+}
