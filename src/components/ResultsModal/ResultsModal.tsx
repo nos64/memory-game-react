@@ -39,26 +39,6 @@ const ResultsModal: React.FC<IResultsModal> = ({
             </li>
           </ul>
         </table>
-        {/* <ul className="results__list">
-          <li className="results__item">
-            <span className="results__name">
-              Name:
-              <span className="results__name-value"></span>
-            </span>
-            <span className="results__difficult">
-              Difficult:
-              <span className="results__difficult-value"></span>
-            </span>
-            <span className="results__moves">
-              Moves:
-              <span className="results__moves-value"></span>
-            </span>
-            <span className="results__time">
-              Moves:
-              <span className="results__time-value"></span>
-            </span>
-          </li>
-        </ul> */}
         <button className={styles.resultCloseButton} onClick={closeModal}>
           Close
         </button>
