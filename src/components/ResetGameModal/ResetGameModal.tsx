@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './ResetGameModal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
+import { setUserName, setUserDifficulty } from '../../store/reducers/userSlice';
+import { useAppDispatch } from '../../hooks/hooks';
 
 interface IResetGameModal {
   isResetModalActive: boolean;
@@ -13,6 +15,7 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
   isResetModalActive,
   setIsResetModalActive,
 }) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const closeModal = () => {
@@ -20,6 +23,9 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
   };
 
   const handleResetButtonClick = () => {
+    dispatch(setUserName(''));
+    dispatch(setUserDifficulty(''));
+    setIsResetModalActive(false);
     navigate(`${ROUTES.START}`);
   };
 

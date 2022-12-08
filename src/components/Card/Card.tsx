@@ -1,15 +1,12 @@
 import React from 'react';
+import { ICard } from '../../types/types';
 import styles from './Card.module.scss';
 
-interface ICard {
-  id: string;
-  avers: string;
-  reverse: string;
-  isActive: boolean;
-}
-const Card: React.FC<ICard> = ({ avers }) => {
+const Card: React.FC<ICard> = ({ avers, isActive }) => {
+  const handleClickCard = () => {};
+
   return (
-    <div className={styles.memoryCard}>
+    <div className={styles.memoryCard} onClick={handleClickCard}>
       <img className={styles.backFace} src={avers} alt="Hero" />
     </div>
   );

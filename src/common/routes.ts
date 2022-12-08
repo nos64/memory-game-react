@@ -1,5 +1,5 @@
 export const ROUTES = {
-  START: '',
-  GAME: 'game',
-  NOTFOUND: '*',
+  START: '/',
+  GAME: '/game',
+  NOTFOUND: '/*',
 };

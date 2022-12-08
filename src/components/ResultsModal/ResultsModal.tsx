@@ -19,26 +19,28 @@ const ResultsModal: React.FC<IResultsModal> = ({
     <ModalWrapper modalActive={isResultsModalActive} setModalActive={closeModal}>
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>Results</h2>
-        <table className={styles.resultsTable}>
-          <th className={styles.tableHead}>
+        {/* <table className={styles.resultsTable}>
+          <thead className={styles.tableHead}>
             <tr className={styles.tableRow}>
-              <td className={styles.tableData}>Name</td>
-              <td className={styles.tableData}>Difficult</td>
-              <td className={styles.tableData}>Moves</td>
-              <td className={styles.tableData}>Time</td>
+              <th className={styles.tableData}>Name</th>
+              <th className={styles.tableData}>Difficult</th>
+              <th className={styles.tableData}>Moves</th>
+              <th className={styles.tableData}>Time</th>
             </tr>
-          </th>
+          </thead>
           <ul className={styles.resultsList}>
             <li className={styles.resultItem}>
-              <tr className={styles.tableRow}>
-                <td className={styles.tableData}>Mikhail4141414142222</td>
-                <td className={styles.tableData}>Medium</td>
-                <td className={styles.tableData}>123411</td>
-                <td className={styles.tableData}>99:99</td>
-              </tr>
+              <table>
+                <tr className={styles.tableRow}>
+                  <td className={styles.tableData}>Mikhail4141414142222</td>
+                  <td className={styles.tableData}>Medium</td>
+                  <td className={styles.tableData}>123411</td>
+                  <td className={styles.tableData}>99:99</td>
+                </tr>
+              </table>
             </li>
           </ul>
-        </table>
+        </table> */}
         <button className={styles.resultCloseButton} onClick={closeModal}>
           Close
         </button>
