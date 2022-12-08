@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CardList.module.scss';
-import { cardData } from '../../common/cardData';
 import Card from '../Card';
 import { useAppSelector } from '../../hooks/hooks';
-import { getCard } from '../../utils/utils';
 import { ICard } from '../../types/types';
 
 const CardList = () => {
+  const cardList = useAppSelector((state) => state.user.cardList);
   const [cards, setCards] = useState<ICard[]>([]);
-  const difficulty = useAppSelector((state) => state.user.difficulty);
-  useEffect(() => {
-    setCards(getCard(difficulty));
-  }, []);
+  // useEffect(() => {
+  //   setCards(cardList || JSON.parse(localStorage.getItem('activeItem') as string)
+  // }, [])
   return (
     <ul className={styles.gameArea}>
-      {}
-      {cards.map((card) => (
-        <li key={card.id}>
+      {cardList.map((card, i) => (
+        <li key={card.id + i}>
           <Card {...card} />
         </li>
       ))}
