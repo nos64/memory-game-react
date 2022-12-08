@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IStartForm } from '../../types/types';
+import { shuffle } from '../../utils/utils';
+import { ICard, IStartForm } from '../../types/types';
+import { cardData } from '../../common/cardData';
 
 const initialState: IStartForm = {
   playerName: '',
   difficulty: '',
+  cardList: [],
 };
 
 const userSlice = createSlice({
@@ -16,8 +19,18 @@ const userSlice = createSlice({
     setUserDifficulty(state, action: PayloadAction<string>) {
       state.difficulty = action.payload;
     },
+    setCardList(state, action: PayloadAction<string>) {
+      const cardsArray = shuffle(cardData);
+      let length = 0;
+      if (action.payload === '') state.cardList = [];
+      if (action.payload === 'easy') length = 12;
+      if (action.payload === 'medium') length = 18;
+      if (action.payload === 'hard') length = 23;
+      const gameArr: ICard[] = cardsArray.slice(0, length);
+      state.cardList = shuffle([...gameArr, ...gameArr]);
+    },
   },
 });
 
-export const { setUserName, setUserDifficulty } = userSlice.actions;
+export const { setUserName, setUserDifficulty, setCardList } = userSlice.actions;
 export default userSlice.reducer;

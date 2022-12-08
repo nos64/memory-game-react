@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './CardList.module.scss';
-import { cardData } from '../../common/cardData';
 import Card from '../Card';
 import { useAppSelector } from '../../hooks/hooks';
-import { getCard } from '../../utils/utils';
-import { ICard } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../common/routes';
 
 const CardList = () => {
-  const [cards, setCards] = useState<ICard[]>([]);
-  const difficulty = useAppSelector((state) => state.user.difficulty);
+  const cardList = useAppSelector((state) => state.user.cardList);
+  const navigate = useNavigate();
   useEffect(() => {
-    setCards(getCard(difficulty));
+    if (cardList.length === 0) {
+      navigate(`${ROUTES.START}`);
+    }
   }, []);
+
   return (
     <ul className={styles.gameArea}>
-      {}
-      {cards.map((card) => (
-        <li key={card.id}>
+      {cardList.map((card, i) => (
+        <li key={card.id + i}>
           <Card {...card} />
         </li>
       ))}

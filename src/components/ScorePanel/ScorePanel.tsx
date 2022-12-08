@@ -9,17 +9,18 @@ const ScorePanel = () => {
   const [isResultsModalActive, setIsResultsModalActive] = useState(false);
   const playerName = useAppSelector((state) => state.user.playerName);
   const difficulty = useAppSelector((state) => state.user.difficulty);
-
+  const name = playerName || localStorage.getItem('playerName');
+  const dif = difficulty || localStorage.getItem('difficulty');
   return (
     <>
       <div className={styles.resultsPanel}>
         <div className={styles.paramWrapper}>
           Player:
-          <span className={styles.paramField}>{playerName}</span>
+          <span className={styles.paramField}>{name}</span>
         </div>
         <div className={styles.paramWrapper}>
           Difficulty:
-          <span className={styles.paramField}>{difficulty}</span>
+          <span className={styles.paramField}>{dif}</span>
         </div>
         <div className={styles.paramWrapper}>
           Moves:
