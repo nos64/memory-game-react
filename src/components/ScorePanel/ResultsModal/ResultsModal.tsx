@@ -1,8 +1,8 @@
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../../ModalWrapper';
 import React from 'react';
 import styles from './ResultsModal.module.scss';
-import { togglePausedTimer } from '../../store/reducers/userSlice';
-import { useAppDispatch } from '../../hooks/hooks';
+import { togglePausedTimer } from '../../../store/reducers/gameSlice';
+import { useAppDispatch } from '../../../hooks/hooks';
 
 interface IResultsModal {
   isResultsModalActive: boolean;

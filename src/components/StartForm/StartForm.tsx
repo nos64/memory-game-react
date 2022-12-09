@@ -10,7 +10,7 @@ import {
   setUserDifficulty,
   setCardList,
   setGameStart,
-} from '../../store/reducers/userSlice';
+} from '../../store/reducers/gameSlice';
 import ValidationErrorMessage from '../ValidationErrorMessage';
 
 const StartForm = () => {

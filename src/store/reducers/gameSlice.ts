@@ -6,13 +6,14 @@ import { cardData } from '../../common/cardData';
 const initialState: IStartForm = {
   playerName: '',
   difficulty: '',
+  moves: 0,
   cardList: [],
   isGameStart: false,
   pausedTimer: false,
 };
 
-const userSlice = createSlice({
-  name: 'user',
+const gameSlice = createSlice({
+  name: 'game',
   initialState,
   reducers: {
     setUserName(state, action: PayloadAction<string>) {
@@ -20,6 +21,9 @@ const userSlice = createSlice({
     },
     setUserDifficulty(state, action: PayloadAction<string>) {
       state.difficulty = action.payload;
+    },
+    increaseMoves(state, action: PayloadAction<number>) {
+      state.moves = action.payload;
     },
     setCardList(state, action: PayloadAction<string>) {
       const cardsArray = shuffle(cardData);
@@ -40,6 +44,12 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserName, setUserDifficulty, setCardList, setGameStart, togglePausedTimer } =
-  userSlice.actions;
-export default userSlice.reducer;
+export const {
+  setUserName,
+  setUserDifficulty,
+  increaseMoves,
+  setCardList,
+  setGameStart,
+  togglePausedTimer,
+} = gameSlice.actions;
+export default gameSlice.reducer;

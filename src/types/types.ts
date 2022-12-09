@@ -1,6 +1,7 @@
 export interface IStartForm {
   playerName: string;
   difficulty: string;
+  moves: number;
   cardList: ICard[];
   isGameStart: boolean;
   pausedTimer: boolean;

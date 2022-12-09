@@ -1,6 +1,6 @@
-@import '../../styles/extension.scss';
-@import '../../styles/colors.scss';
-@import '../../styles/mixins.scss';
+@import '../../../styles/extension.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
 
 .modalContent {
   @extend %centered;

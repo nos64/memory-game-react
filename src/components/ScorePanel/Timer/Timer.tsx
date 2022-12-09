@@ -3,8 +3,8 @@ import styles from './Timer.module.scss';
 import { useAppSelector } from '../../../hooks/hooks';
 
 const Timer = () => {
-  const isGameStart = useAppSelector((state) => state.user.isGameStart);
-  const pausedTimer = useAppSelector((state) => state.user.pausedTimer);
+  const isGameStart = useAppSelector((state) => state.game.isGameStart);
+  const pausedTimer = useAppSelector((state) => state.game.pausedTimer);
   const [[minutes, seconds], setTime] = useState([0, 0]);
   const [secondsStr, setSecondsStr] = useState('00');
   const [minutesStr, setMinutesStr] = useState('00');
@@ -24,10 +24,13 @@ const Timer = () => {
   });
 
   return (
-    <div className={styles.timer}>
-      <div className={styles.dighit}>{`${minutesStr} min`}</div>
-      <span>:</span>
-      <div className={styles.dighit}>{`${secondsStr} sec`}</div>
+    <div className={styles.fieldWrapper}>
+      Timer:
+      <div className={styles.paramField}>
+        <div className={styles.dighit}>{`${minutesStr} min`}</div>
+        <span>:</span>
+        <div className={styles.dighit}>{`${secondsStr} sec`}</div>
+      </div>
     </div>
   );
 };

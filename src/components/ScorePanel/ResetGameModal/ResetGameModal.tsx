@@ -1,16 +1,16 @@
-import ModalWrapper from '../ModalWrapper';
+import ModalWrapper from '../../ModalWrapper';
 import React from 'react';
 import styles from './ResetGameModal.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../common/routes';
+import { ROUTES } from '../../../common/routes';
 import {
   setUserName,
   setUserDifficulty,
   setCardList,
   setGameStart,
   togglePausedTimer,
-} from '../../store/reducers/userSlice';
-import { useAppDispatch } from '../../hooks/hooks';
+} from '../../../store/reducers/gameSlice';
+import { useAppDispatch } from '../../../hooks/hooks';
 
 interface IResetGameModal {
   isResetModalActive: boolean;

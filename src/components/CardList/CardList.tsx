@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
 
 const CardList = () => {
-  const cardList = useAppSelector((state) => state.user.cardList);
+  const cardList = useAppSelector((state) => state.game.cardList);
   const navigate = useNavigate();
   useEffect(() => {
     if (cardList.length === 0) {
