@@ -25,6 +25,7 @@ const StartForm = () => {
 
   const onSubmit = (data: IStartForm) => {
     dispatch(setUserName(data.playerName));
+    localStorage.setItem('playerName', data.playerName);
     dispatch(setUserDifficulty(data.difficulty));
     dispatch(setCardList(data.difficulty));
     dispatch(setGameStart(true));
