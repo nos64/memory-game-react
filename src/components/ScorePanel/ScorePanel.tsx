@@ -2,25 +2,37 @@ import React, { useState } from 'react';
 import styles from './ScorePanel.module.scss';
 import ResetGameModal from '../ResetGameModal';
 import ResultsModal from '../ResultsModal';
-import { useAppSelector } from '../../hooks/hooks';
+import Timer from './Timer';
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { togglePausedTimer } from '../../store/reducers/userSlice';
 
 const ScorePanel = () => {
   const [isResetModalActive, setIsResetModalActive] = useState(false);
   const [isResultsModalActive, setIsResultsModalActive] = useState(false);
   const playerName = useAppSelector((state) => state.user.playerName);
   const difficulty = useAppSelector((state) => state.user.difficulty);
-  const name = playerName || localStorage.getItem('playerName');
-  const dif = difficulty || localStorage.getItem('difficulty');
+  const dispatch = useAppDispatch();
+
+  const handleResetButtonClick = () => {
+    setIsResetModalActive(true);
+    dispatch(togglePausedTimer(true));
+  };
+
+  const handleResultsButtonClick = () => {
+    setIsResultsModalActive(true);
+    dispatch(togglePausedTimer(true));
+  };
+
   return (
     <>
       <div className={styles.resultsPanel}>
         <div className={styles.paramWrapper}>
           Player:
-          <span className={styles.paramField}>{name}</span>
+          <span className={styles.paramField}>{playerName}</span>
         </div>
         <div className={styles.paramWrapper}>
           Difficulty:
-          <span className={styles.paramField}>{dif}</span>
+          <span className={styles.paramField}>{difficulty}</span>
         </div>
         <div className={styles.paramWrapper}>
           Moves:
@@ -28,20 +40,14 @@ const ScorePanel = () => {
         </div>
         <div className={styles.fieldWrapper}>
           Timer:
-          <span className={styles.paramField}>00 min : 00 sec</span>
+          <span className={styles.paramField}>
+            <Timer />
+          </span>
         </div>
-        <button
-          className={styles.panelButton}
-          type="button"
-          onClick={() => setIsResetModalActive(true)}
-        >
+        <button className={styles.panelButton} type="button" onClick={handleResetButtonClick}>
           Reset
         </button>
-        <button
-          className={styles.panelButton}
-          type="button"
-          onClick={() => setIsResultsModalActive(true)}
-        >
+        <button className={styles.panelButton} type="button" onClick={handleResultsButtonClick}>
           Results
         </button>
       </div>

@@ -1,6 +1,8 @@
 import ModalWrapper from '../ModalWrapper';
 import React from 'react';
 import styles from './ResultsModal.module.scss';
+import { togglePausedTimer } from '../../store/reducers/userSlice';
+import { useAppDispatch } from '../../hooks/hooks';
 
 interface IResultsModal {
   isResultsModalActive: boolean;
@@ -11,8 +13,11 @@ const ResultsModal: React.FC<IResultsModal> = ({
   isResultsModalActive,
   setIsResultsModalActive,
 }) => {
+  const dispatch = useAppDispatch();
+
   const closeModal = () => {
     setIsResultsModalActive(false);
+    dispatch(togglePausedTimer(false));
   };
 
   return (

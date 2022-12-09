@@ -7,6 +7,8 @@ const initialState: IStartForm = {
   playerName: '',
   difficulty: '',
   cardList: [],
+  isGameStart: false,
+  pausedTimer: false,
 };
 
 const userSlice = createSlice({
@@ -29,8 +31,15 @@ const userSlice = createSlice({
       const gameArr: ICard[] = cardsArray.slice(0, length);
       state.cardList = shuffle([...gameArr, ...gameArr]);
     },
+    setGameStart(state, action: PayloadAction<boolean>) {
+      state.isGameStart = action.payload;
+    },
+    togglePausedTimer(state, action: PayloadAction<boolean>) {
+      state.pausedTimer = action.payload;
+    },
   },
 });
 
-export const { setUserName, setUserDifficulty, setCardList } = userSlice.actions;
+export const { setUserName, setUserDifficulty, setCardList, setGameStart, togglePausedTimer } =
+  userSlice.actions;
 export default userSlice.reducer;

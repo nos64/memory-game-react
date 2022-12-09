@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import styles from './StartForm.module.scss';
 import { IStartForm } from '../../types/types';
 import { useAppDispatch } from '../../hooks/hooks';
-import { setUserName, setUserDifficulty, setCardList } from '../../store/reducers/userSlice';
+import {
+  setUserName,
+  setUserDifficulty,
+  setCardList,
+  setGameStart,
+} from '../../store/reducers/userSlice';
 import ValidationErrorMessage from '../ValidationErrorMessage';
 
 const StartForm = () => {
@@ -22,6 +27,7 @@ const StartForm = () => {
     dispatch(setUserName(data.playerName));
     dispatch(setUserDifficulty(data.difficulty));
     dispatch(setCardList(data.difficulty));
+    dispatch(setGameStart(true));
     reset();
     navigate(`${ROUTES.GAME}`);
   };

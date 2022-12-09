@@ -3,7 +3,13 @@ import React from 'react';
 import styles from './ResetGameModal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
-import { setUserName, setUserDifficulty, setCardList } from '../../store/reducers/userSlice';
+import {
+  setUserName,
+  setUserDifficulty,
+  setCardList,
+  setGameStart,
+  togglePausedTimer,
+} from '../../store/reducers/userSlice';
 import { useAppDispatch } from '../../hooks/hooks';
 
 interface IResetGameModal {
@@ -20,20 +26,21 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
 
   const closeModal = () => {
     setIsResetModalActive(false);
+    dispatch(togglePausedTimer(false));
   };
 
   const handleResetButtonClick = () => {
     dispatch(setUserName(''));
     dispatch(setUserDifficulty(''));
     dispatch(setCardList(''));
-    localStorage.removeItem('playerName');
-    localStorage.removeItem('difficulty');
-    setIsResetModalActive(false);
+    dispatch(setGameStart(false));
+    dispatch(togglePausedTimer(false));
     navigate(`${ROUTES.START}`);
   };
 
   const handleCancelModalClick = () => {
     setIsResetModalActive(false);
+    dispatch(togglePausedTimer(false));
   };
 
   return (
