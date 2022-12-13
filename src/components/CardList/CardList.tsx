@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
 import { ICard } from '../../types/types';
 // import { setCardList } from 'store/reducers/gameSlice';
+import { useAppDispatch } from './../../hooks/hooks';
+import { changeMovesCounter, incrementCounterMatch } from '../../store/reducers/gameSlice';
 
 const CardList = () => {
   const cardList = useAppSelector((state) => state.game.cardList);
   const navigate = useNavigate();
-  const [cardsArray, setCardsArray] = useState(cardList);
+  const dispatch = useAppDispatch();
+  const [cardsArray, setCardsArray] = useState<ICard[]>([]);
   const [firstCard, setFirstCard] = useState<ICard | null>(null);
   const [secondCard, setSecondCard] = useState<ICard | null>(null);
   const [lockBoard, setLockBoard] = useState(false);
@@ -19,47 +22,58 @@ const CardList = () => {
     if (cardList.length === 0) {
       navigate(`${ROUTES.START}`);
     }
-  }, []);
+    const gameArray = cardList.map((card, index) => ({ ...card, index: index }));
+    setCardsArray(gameArray);
+  }, [cardList, cardList.length, navigate]);
 
   const handleClickCard = (index: number) => {
     if (lockBoard) return;
+    if (index === firstCard?.index) {
+      return;
+    }
     const newCardArray = cardsArray.map((card, i) =>
       index === i ? { ...card, isFliped: true } : { ...card }
     );
-    // setCardsArray(newCardArray);
-    // const newCardArray = cardsArray.map((card, i) => {
-    //   if (index === i && card === firstCard) return { ...card };
-    //   if (index === i && !card.isFliped) {
-    //     setFirstCard(card);
-    //     console.log('first', firstCard);
-    //     return { ...card, isFliped: true };
-    //   }
-    //   setSecondCard(card);
-    //   console.log('second', secondCard);
-    //   return { ...card, isFliped: true };
-    // });
-    // setCardsArray(newCardArray);
-
-    if (firstCard === null && secondCard === null) {
-      const first = newCardArray.find((card) => card.isFliped);
+    setCardsArray(newCardArray);
+    if (!firstCard) {
+      const first = newCardArray.find((card, i) => i === index);
       if (first) {
         setFirstCard(first);
-        console.log('first', firstCard);
+        return;
       }
     }
-    if (firstCard !== null && secondCard === null) {
-      const second = newCardArray.find((card) => card.isFliped);
-      if (second) {
-        setSecondCard(second);
-        console.log('second', secondCard);
-      }
-    }
+    const second = newCardArray.find((card, i) => card !== firstCard && i === index);
+    if (second) setSecondCard(second);
     if (firstCard && secondCard) {
-      setFirstCard(null);
-      setSecondCard(null);
-      // const thirdClickArray = cardsArray.map((card) => { ...card, isFliped: false })
+      checkForMatch();
     }
-    setCardsArray(newCardArray);
+  };
+
+  const checkForMatch = () => {
+    dispatch(changeMovesCounter(1));
+    if (firstCard?.id === secondCard?.id) {
+      console.log('secondCard?.id: ', secondCard?.id);
+      console.log('firstCard?.id: ', firstCard?.id);
+      console.log('done');
+      dispatch(incrementCounterMatch(1));
+    } else {
+      unflipCards();
+    }
+  };
+
+  const unflipCards = () => {
+    setLockBoard(true);
+    setTimeout(() => {
+      const thirdClickArray = cardsArray.map((card) => ({ ...card, isFliped: false }));
+      setCardsArray(thirdClickArray);
+      resetBoard();
+    }, 1000);
+  };
+
+  const resetBoard = () => {
+    setLockBoard(false);
+    setFirstCard(null);
+    setSecondCard(null);
   };
 
   return (
