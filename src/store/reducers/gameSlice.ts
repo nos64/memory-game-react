@@ -41,6 +41,9 @@ const gameSlice = createSlice({
     togglePausedTimer(state, action: PayloadAction<boolean>) {
       state.pausedTimer = action.payload;
     },
+    changeMovesCounter(state, action: PayloadAction<number>) {
+      state.moves += action.payload;
+    },
   },
 });
 
@@ -51,5 +54,6 @@ export const {
   setCardList,
   setGameStart,
   togglePausedTimer,
+  changeMovesCounter,
 } = gameSlice.actions;
 export default gameSlice.reducer;

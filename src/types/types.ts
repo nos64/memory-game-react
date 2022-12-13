@@ -11,5 +11,5 @@ export interface ICard {
   id: string;
   avers: string;
   reverse: string;
-  isActive: boolean;
+  isFliped: boolean;
 }
