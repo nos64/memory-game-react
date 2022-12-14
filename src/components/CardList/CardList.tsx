@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CardList.module.scss';
-import Card from '../Card';
+// import Card from '../Card';
 import { useAppSelector } from '../../hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
 import { ICard } from '../../types/types';
-// import { setCardList } from 'store/reducers/gameSlice';
 import { useAppDispatch } from './../../hooks/hooks';
-import { changeMovesCounter, incrementCounterMatch } from '../../store/reducers/gameSlice';
+import {
+  changeMovesCounter,
+  incrementCounterMatch,
+  setFirstCard,
+  setSecondCard,
+} from '../../store/reducers/gameSlice';
 
 const CardList = () => {
   const cardList = useAppSelector((state) => state.game.cardList);
+  const firstCard = useAppSelector((state) => state.game.firstCard);
+  const secondCard = useAppSelector((state) => state.game.secondCard);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [cardsArray, setCardsArray] = useState<ICard[]>([]);
-  const [firstCard, setFirstCard] = useState<ICard | null>(null);
-  const [secondCard, setSecondCard] = useState<ICard | null>(null);
+  // const [firstCard, setFirstCard] = useState<ICard | null>(null);
+  // const [secondCard, setSecondCard] = useState<ICard | null>(null);
   const [lockBoard, setLockBoard] = useState(false);
 
   useEffect(() => {
@@ -24,7 +30,7 @@ const CardList = () => {
     }
     const gameArray = cardList.map((card, index) => ({ ...card, index: index }));
     setCardsArray(gameArray);
-  }, [cardList, cardList.length, navigate]);
+  }, []);
 
   const handleClickCard = (index: number) => {
     if (lockBoard) return;
@@ -36,24 +42,32 @@ const CardList = () => {
     );
     setCardsArray(newCardArray);
     if (!firstCard) {
-      const first = newCardArray.find((card, i) => i === index);
+      const first = cardsArray.find((card, i) => i === index);
       if (first) {
-        setFirstCard(first);
+        dispatch(setFirstCard(first));
         return;
       }
     }
-    const second = newCardArray.find((card, i) => card !== firstCard && i === index);
-    if (second) setSecondCard(second);
-    if (firstCard && secondCard) {
-      checkForMatch();
+    const second = cardsArray.find((card, i) => card !== firstCard && i === index);
+    if (second) {
+      dispatch(setSecondCard(second));
     }
   };
 
+  useEffect(() => {
+    if (secondCard) {
+      checkForMatch();
+    }
+  }, [secondCard]);
+
   const checkForMatch = () => {
     dispatch(changeMovesCounter(1));
-    if (firstCard?.id === secondCard?.id) {
-      console.log('secondCard?.id: ', secondCard?.id);
-      console.log('firstCard?.id: ', firstCard?.id);
+    if (firstCard !== null && secondCard !== null && firstCard?.id === secondCard?.id) {
+      const modifyCards = cardsArray.map((card) =>
+        card.isFliped ? { ...card, isFliped: true, isBlocked: true } : { ...card }
+      );
+      setCardsArray(modifyCards);
+      resetBoard();
       console.log('done');
       dispatch(incrementCounterMatch(1));
     } else {
@@ -64,7 +78,9 @@ const CardList = () => {
   const unflipCards = () => {
     setLockBoard(true);
     setTimeout(() => {
-      const thirdClickArray = cardsArray.map((card) => ({ ...card, isFliped: false }));
+      const thirdClickArray = cardsArray.map((card) =>
+        card.isBlocked ? { ...card } : { ...card, isFliped: false }
+      );
       setCardsArray(thirdClickArray);
       resetBoard();
     }, 1000);
@@ -72,14 +88,18 @@ const CardList = () => {
 
   const resetBoard = () => {
     setLockBoard(false);
-    setFirstCard(null);
-    setSecondCard(null);
+    dispatch(setFirstCard(null));
+    dispatch(setSecondCard(null));
   };
 
   return (
     <ul className={styles.gameArea}>
       {cardsArray.map((card, index) => (
-        <li key={card.id + index} onClick={() => handleClickCard(index)}>
+        <li
+          key={card.id + index}
+          className={card.isBlocked ? styles.noClick : ''}
+          onClick={() => handleClickCard(index)}
+        >
           {/* <Card {...card} /> */}
           <div
             className={card.isFliped ? `${styles.memoryCard} ${styles.flip}` : styles.memoryCard}

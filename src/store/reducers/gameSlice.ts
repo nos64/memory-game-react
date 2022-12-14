@@ -11,6 +11,8 @@ const initialState: IStartForm = {
   isGameStart: false,
   pausedTimer: false,
   counterMatch: 0,
+  firstCard: null,
+  secondCard: null,
 };
 
 const gameSlice = createSlice({
@@ -48,6 +50,12 @@ const gameSlice = createSlice({
     incrementCounterMatch(state, action: PayloadAction<number>) {
       state.counterMatch += action.payload;
     },
+    setFirstCard(state, action: PayloadAction<ICard | null>) {
+      state.firstCard = action.payload;
+    },
+    setSecondCard(state, action: PayloadAction<ICard | null>) {
+      state.secondCard = action.payload;
+    },
   },
 });
 
@@ -60,5 +68,7 @@ export const {
   togglePausedTimer,
   changeMovesCounter,
   incrementCounterMatch,
+  setFirstCard,
+  setSecondCard,
 } = gameSlice.actions;
 export default gameSlice.reducer;

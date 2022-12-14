@@ -29,6 +29,7 @@ export const cardData = [
     avers: antMan,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -36,6 +37,7 @@ export const cardData = [
     avers: blackPanter1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -43,6 +45,7 @@ export const cardData = [
     avers: blackPanter2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -50,6 +53,7 @@ export const cardData = [
     avers: cptAmerica1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -57,6 +61,7 @@ export const cardData = [
     avers: cptAmerica2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -64,6 +69,7 @@ export const cardData = [
     avers: blackPAnter,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -71,6 +77,7 @@ export const cardData = [
     avers: cptMarvel,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -78,6 +85,7 @@ export const cardData = [
     avers: drStrange,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -85,6 +93,7 @@ export const cardData = [
     avers: eagle,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -92,6 +101,7 @@ export const cardData = [
     avers: fury,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -99,6 +109,7 @@ export const cardData = [
     avers: hawkEye1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -106,6 +117,7 @@ export const cardData = [
     avers: hawkEye2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -113,6 +125,7 @@ export const cardData = [
     avers: hulk1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -120,6 +133,7 @@ export const cardData = [
     avers: hulk2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -127,6 +141,7 @@ export const cardData = [
     avers: hulk3,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -134,6 +149,7 @@ export const cardData = [
     avers: ironMan1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -141,6 +157,7 @@ export const cardData = [
     avers: ironMan2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -148,6 +165,7 @@ export const cardData = [
     avers: locky,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -155,6 +173,7 @@ export const cardData = [
     avers: romanov,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -162,6 +181,7 @@ export const cardData = [
     avers: spiderMan1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -169,6 +189,7 @@ export const cardData = [
     avers: spiderMan2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -176,6 +197,7 @@ export const cardData = [
     avers: thor1,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
   {
@@ -183,6 +205,7 @@ export const cardData = [
     avers: thor2,
     reverse: reverse,
     isFliped: false,
+    isBlocked: false,
     index: 0,
   },
 ];

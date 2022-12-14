@@ -6,6 +6,8 @@ export interface IStartForm {
   isGameStart: boolean;
   pausedTimer: boolean;
   counterMatch: number;
+  firstCard: ICard | null;
+  secondCard: ICard | null;
 }
 
 export interface ICard {
@@ -13,5 +15,6 @@ export interface ICard {
   avers: string;
   reverse: string;
   isFliped: boolean;
+  isBlocked: boolean;
   index: number;
 }

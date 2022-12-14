@@ -15,8 +15,9 @@
 
 
 
-
-
+.noClick {
+  pointer-events: none;
+}
 
 .memoryCard {
   background-image: url("../../assets/images/avengers-logo.png");
@@ -31,7 +32,6 @@
   transform-style: preserve-3d;
   transition: transform .5s;
 
-  // &:active,
   &:focus {
     transform: scale(0.97);
     transition: transform .2s;
