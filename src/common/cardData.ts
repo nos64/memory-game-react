@@ -4,7 +4,6 @@ import blackPanter1 from '../assets/images/cards/black-panter_5-5.jpg';
 import blackPanter2 from '../assets/images/cards/black-panter1_5-5.jpg';
 import cptAmerica1 from '../assets/images/cards/cpt-america_5-5.jpg';
 import cptAmerica2 from '../assets/images/cards/cpt-america1_5-5.jpg';
-import blackPAnter from '../assets/images/cards/black-panter_5-5.jpg';
 import cptMarvel from '../assets/images/cards/cpt-marvel_5-5.jpg';
 import drStrange from '../assets/images/cards/dr-starange_5-5.jpg';
 import eagle from '../assets/images/cards/eagle_5-5.jpg';
@@ -66,14 +65,6 @@ export const cardData = [
   },
   {
     id: '06',
-    avers: blackPAnter,
-    reverse: reverse,
-    isFliped: false,
-    isBlocked: false,
-    index: 0,
-  },
-  {
-    id: '07',
     avers: cptMarvel,
     reverse: reverse,
     isFliped: false,
@@ -81,7 +72,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '08',
+    id: '07',
     avers: drStrange,
     reverse: reverse,
     isFliped: false,
@@ -89,7 +80,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '09',
+    id: '08',
     avers: eagle,
     reverse: reverse,
     isFliped: false,
@@ -97,7 +88,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '10',
+    id: '09',
     avers: fury,
     reverse: reverse,
     isFliped: false,
@@ -105,7 +96,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '11',
+    id: '10',
     avers: hawkEye1,
     reverse: reverse,
     isFliped: false,
@@ -113,7 +104,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '12',
+    id: '11',
     avers: hawkEye2,
     reverse: reverse,
     isFliped: false,
@@ -121,7 +112,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '13',
+    id: '12',
     avers: hulk1,
     reverse: reverse,
     isFliped: false,
@@ -129,7 +120,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '14',
+    id: '13',
     avers: hulk2,
     reverse: reverse,
     isFliped: false,
@@ -137,7 +128,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '15',
+    id: '14',
     avers: hulk3,
     reverse: reverse,
     isFliped: false,
@@ -145,7 +136,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '16',
+    id: '15',
     avers: ironMan1,
     reverse: reverse,
     isFliped: false,
@@ -153,7 +144,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '17',
+    id: '16',
     avers: ironMan2,
     reverse: reverse,
     isFliped: false,
@@ -161,7 +152,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '18',
+    id: '17',
     avers: locky,
     reverse: reverse,
     isFliped: false,
@@ -169,7 +160,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '19',
+    id: '18',
     avers: romanov,
     reverse: reverse,
     isFliped: false,
@@ -177,7 +168,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '20',
+    id: '19',
     avers: spiderMan1,
     reverse: reverse,
     isFliped: false,
@@ -185,7 +176,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '21',
+    id: '20',
     avers: spiderMan2,
     reverse: reverse,
     isFliped: false,
@@ -193,7 +184,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '22',
+    id: '21',
     avers: thor1,
     reverse: reverse,
     isFliped: false,
@@ -201,7 +192,7 @@ export const cardData = [
     index: 0,
   },
   {
-    id: '23',
+    id: '22',
     avers: thor2,
     reverse: reverse,
     isFliped: false,

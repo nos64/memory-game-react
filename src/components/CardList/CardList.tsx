@@ -15,17 +15,20 @@ import {
 
 const CardList = () => {
   const cardList = useAppSelector((state) => state.game.cardList);
-  const firstCard = useAppSelector((state) => state.game.firstCard);
-  const secondCard = useAppSelector((state) => state.game.secondCard);
+  // const firstCard = useAppSelector((state) => state.game.firstCard);
+  // const secondCard = useAppSelector((state) => state.game.secondCard);
+  const counterMatch = useAppSelector((state) => state.game.counterMatch);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [cardsArray, setCardsArray] = useState<ICard[]>([]);
-  // const [firstCard, setFirstCard] = useState<ICard | null>(null);
-  // const [secondCard, setSecondCard] = useState<ICard | null>(null);
+  const [firstCard, setFirstCard] = useState<ICard | null>(null);
+  const [secondCard, setSecondCard] = useState<ICard | null>(null);
   const [lockBoard, setLockBoard] = useState(false);
+  const [hasFlipedCard, setHasFlipedCard] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    if (cardList.length === 0) {
+    if (!cardList.length) {
       navigate(`${ROUTES.START}`);
     }
     const gameArray = cardList.map((card, index) => ({ ...card, index: index }));
@@ -41,37 +44,53 @@ const CardList = () => {
       index === i ? { ...card, isFliped: true } : { ...card }
     );
     setCardsArray(newCardArray);
-    if (!firstCard) {
+    if (!hasFlipedCard) {
+      setHasFlipedCard(true);
       const first = cardsArray.find((card, i) => i === index);
       if (first) {
-        dispatch(setFirstCard(first));
+        // dispatch(setFirstCard(first));
+        setFirstCard(first);
         return;
       }
     }
-    const second = cardsArray.find((card, i) => card !== firstCard && i === index);
+    const second = cardsArray.find((card, i) => i === index);
     if (second) {
-      dispatch(setSecondCard(second));
+      // dispatch(setSecondCard(second));
+      setSecondCard(second);
+      // checkForMatch();
+      // dispatch(changeMovesCounter(1));
+      // checkWin();
     }
   };
 
   useEffect(() => {
     if (secondCard) {
       checkForMatch();
+      dispatch(changeMovesCounter(1));
     }
   }, [secondCard]);
 
+  useEffect(() => {
+    checkWin();
+  }, [counter]);
+
   const checkForMatch = () => {
-    dispatch(changeMovesCounter(1));
-    if (firstCard !== null && secondCard !== null && firstCard?.id === secondCard?.id) {
+    if (firstCard?.id === secondCard?.id) {
+      // dispatch(incrementCounterMatch(1));
+      setCounter((counter) => (counter += 1));
       const modifyCards = cardsArray.map((card) =>
         card.isFliped ? { ...card, isFliped: true, isBlocked: true } : { ...card }
       );
       setCardsArray(modifyCards);
       resetBoard();
-      console.log('done');
-      dispatch(incrementCounterMatch(1));
+      // console.log('counterMatch: ', counterMatch);
     } else {
       unflipCards();
+    }
+  };
+  const checkWin = () => {
+    if (counter === cardsArray.length / 2) {
+      console.log('finish');
     }
   };
 
@@ -88,8 +107,11 @@ const CardList = () => {
 
   const resetBoard = () => {
     setLockBoard(false);
-    dispatch(setFirstCard(null));
-    dispatch(setSecondCard(null));
+    setHasFlipedCard(false);
+    // dispatch(setFirstCard(null));
+    // dispatch(setSecondCard(null));
+    setFirstCard(null);
+    setSecondCard(null);
   };
 
   return (
@@ -100,7 +122,6 @@ const CardList = () => {
           className={card.isBlocked ? styles.noClick : ''}
           onClick={() => handleClickCard(index)}
         >
-          {/* <Card {...card} /> */}
           <div
             className={card.isFliped ? `${styles.memoryCard} ${styles.flip}` : styles.memoryCard}
           >
