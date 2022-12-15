@@ -31,7 +31,7 @@ const gameSlice = createSlice({
       const cardsArray = shuffle(cardData);
       let length = 0;
       if (action.payload === '') state.cardList = [];
-      if (action.payload === 'easy') length = 4;
+      if (action.payload === 'easy') length = 2;
       if (action.payload === 'medium') length = 18;
       if (action.payload === 'hard') length = 22;
       const gameArr: ICard[] = cardsArray.slice(0, length);
@@ -45,6 +45,9 @@ const gameSlice = createSlice({
     },
     changeMovesCounter(state, action: PayloadAction<number>) {
       state.moves += action.payload;
+    },
+    resetMovesCounter(state) {
+      state.moves = 0;
     },
     incrementCounterMatch(state, action: PayloadAction<number>) {
       state.counterMatch += action.payload;
@@ -68,6 +71,7 @@ export const {
   setUserName,
   setUserDifficulty,
   changeMovesCounter,
+  resetMovesCounter,
   setCardList,
   setGameStart,
   togglePausedTimer,

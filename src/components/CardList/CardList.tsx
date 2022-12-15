@@ -15,12 +15,13 @@ import {
   togglePausedTimer,
 } from '../../store/reducers/gameSlice';
 import FinalModal from '../FinalModal';
+import { saveInStorage } from '../../utils/utils';
 
 const CardList = () => {
   const cardList = useAppSelector((state) => state.game.cardList);
   // const firstCard = useAppSelector((state) => state.game.firstCard);
   // const secondCard = useAppSelector((state) => state.game.secondCard);
-  const counterMatch = useAppSelector((state) => state.game.counterMatch);
+  // const counterMatch = useAppSelector((state) => state.game.counterMatch);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [cardsArray, setCardsArray] = useState<ICard[]>([]);
@@ -31,6 +32,11 @@ const CardList = () => {
   const [counter, setCounter] = useState(0);
   const [isFinishModalOpen, setIsFinishModalOpen] = useState(false);
 
+  const playerName = useAppSelector((state) => state.game.playerName);
+  const difficulty = useAppSelector((state) => state.game.difficulty);
+  const secondsStr = useAppSelector((state) => state.game.secondsStr);
+  const minutesStr = useAppSelector((state) => state.game.minutesStr);
+  const moves = useAppSelector((state) => state.game.moves);
   useEffect(() => {
     if (!cardList.length) {
       navigate(`${ROUTES.START}`);
@@ -94,12 +100,10 @@ const CardList = () => {
   };
   const checkWin = () => {
     if (counter && cardsArray.length && counter === cardsArray.length / 2) {
-      console.log('cardsArray.length / 2: ', cardsArray.length / 2);
-      console.log('counter: ', counter);
-      console.log('winns');
       dispatch(setGameStart(false));
       dispatch(togglePausedTimer(true));
       setIsFinishModalOpen(true);
+      saveInStorage({ playerName, difficulty, minutesStr, secondsStr, moves });
     }
   };
 

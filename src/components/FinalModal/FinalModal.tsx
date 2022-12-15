@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './FinalModal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import {
+  resetMovesCounter,
   setCardList,
   setGameStart,
   setUserDifficulty,
@@ -31,6 +32,7 @@ const FinalModal: React.FC<IFinalModalProps> = ({ isFinishModalOpen, setIsFinish
     dispatch(setUserName(''));
     dispatch(setUserDifficulty(''));
     dispatch(setCardList(''));
+    dispatch(resetMovesCounter());
     dispatch(togglePausedTimer(false));
     navigate(`${ROUTES.START}`);
   };
@@ -42,9 +44,9 @@ const FinalModal: React.FC<IFinalModalProps> = ({ isFinishModalOpen, setIsFinish
         <p className={styles.finalText}>You Win!</p>
         <p className={styles.finalText}>
           Time to complete:{' '}
-          <p className={styles.finalTextValue}>
+          <span className={styles.finalTextValue}>
             {minutesStr} min and {secondsStr} sec
-          </p>
+          </span>
         </p>
         <p className={styles.finalText}>
           Moves taken: <span className={styles.finalTextValue}>{moves}</span>

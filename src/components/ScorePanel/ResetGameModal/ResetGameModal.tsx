@@ -9,6 +9,7 @@ import {
   setCardList,
   setGameStart,
   togglePausedTimer,
+  resetMovesCounter,
 } from '../../../store/reducers/gameSlice';
 import { useAppDispatch } from '../../../hooks/hooks';
 
@@ -33,6 +34,7 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
     dispatch(setUserName(''));
     dispatch(setUserDifficulty(''));
     dispatch(setCardList(''));
+    dispatch(resetMovesCounter());
     dispatch(setGameStart(false));
     dispatch(togglePausedTimer(false));
     navigate(`${ROUTES.START}`);
