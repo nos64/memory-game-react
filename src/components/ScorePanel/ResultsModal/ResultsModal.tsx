@@ -1,19 +1,23 @@
 import ModalWrapper from '../../ModalWrapper';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ResultsModal.module.scss';
 import { togglePausedTimer } from '../../../store/reducers/gameSlice';
 import { useAppDispatch } from '../../../hooks/hooks';
+import { getFromStorage } from '../../../utils/utils';
 
 interface IResultsModal {
   isResultsModalActive: boolean;
   setIsResultsModalActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 const ResultsModal: React.FC<IResultsModal> = ({
   isResultsModalActive,
   setIsResultsModalActive,
 }) => {
   const dispatch = useAppDispatch();
+  const [results, setResults] = useState(getFromStorage());
+  useEffect(() => {
+    console.log(results);
+  }, []);
 
   const closeModal = () => {
     setIsResultsModalActive(false);

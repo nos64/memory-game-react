@@ -26,3 +26,7 @@ export const saveInStorage = (params: ISavedPlayerObject): void => {
   }
   localStorage.setItem('results', JSON.stringify(resultsArray));
 };
+
+export const getFromStorage = () => {
+  return JSON.parse(localStorage.getItem('results') as string) || <ISavedPlayerObject[]>[];
+};
