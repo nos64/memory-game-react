@@ -24,7 +24,7 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setIsResetModalActive(false);
     dispatch(togglePausedTimer(false));
   };
@@ -38,13 +38,8 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
     navigate(`${ROUTES.START}`);
   };
 
-  const handleCancelModalClick = () => {
-    setIsResetModalActive(false);
-    dispatch(togglePausedTimer(false));
-  };
-
   return (
-    <ModalWrapper modalActive={isResetModalActive} setModalActive={closeModal}>
+    <ModalWrapper modalActive={isResetModalActive} setModalActive={handleCloseModal}>
       <div className={styles.resetWrapper}>
         <p className={styles.resetText}>Are you sure?</p>
         <p className={styles.resetText}>Your progress will be Lost!</p>
@@ -52,7 +47,7 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
           <button className={styles.resetBtn} onClick={handleResetButtonClick}>
             Yes, Restart Game!
           </button>
-          <button className={styles.resetBtn} onClick={handleCancelModalClick}>
+          <button className={styles.resetBtn} onClick={handleCloseModal}>
             Cancel
           </button>
         </div>

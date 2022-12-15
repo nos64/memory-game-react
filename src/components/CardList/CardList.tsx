@@ -11,7 +11,10 @@ import {
   incrementCounterMatch,
   setFirstCard,
   setSecondCard,
+  setGameStart,
+  togglePausedTimer,
 } from '../../store/reducers/gameSlice';
+import FinalModal from '../FinalModal';
 
 const CardList = () => {
   const cardList = useAppSelector((state) => state.game.cardList);
@@ -26,6 +29,7 @@ const CardList = () => {
   const [lockBoard, setLockBoard] = useState(false);
   const [hasFlipedCard, setHasFlipedCard] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [isFinishModalOpen, setIsFinishModalOpen] = useState(false);
 
   useEffect(() => {
     if (!cardList.length) {
@@ -89,8 +93,13 @@ const CardList = () => {
     }
   };
   const checkWin = () => {
-    if (counter === cardsArray.length / 2) {
-      console.log('finish');
+    if (counter && cardsArray.length && counter === cardsArray.length / 2) {
+      console.log('cardsArray.length / 2: ', cardsArray.length / 2);
+      console.log('counter: ', counter);
+      console.log('winns');
+      dispatch(setGameStart(false));
+      dispatch(togglePausedTimer(true));
+      setIsFinishModalOpen(true);
     }
   };
 
@@ -115,21 +124,27 @@ const CardList = () => {
   };
 
   return (
-    <ul className={styles.gameArea}>
-      {cardsArray.map((card, index) => (
-        <li
-          key={card.id + index}
-          className={card.isBlocked ? styles.noClick : ''}
-          onClick={() => handleClickCard(index)}
-        >
-          <div
-            className={card.isFliped ? `${styles.memoryCard} ${styles.flip}` : styles.memoryCard}
+    <>
+      <ul className={styles.gameArea}>
+        {cardsArray.map((card, index) => (
+          <li
+            key={card.id + index}
+            className={card.isBlocked ? styles.noClick : ''}
+            onClick={() => handleClickCard(index)}
           >
-            <img className={styles.backFace} src={card.avers} alt="Hero" />
-          </div>
-        </li>
-      ))}
-    </ul>
+            <div
+              className={card.isFliped ? `${styles.memoryCard} ${styles.flip}` : styles.memoryCard}
+            >
+              <img className={styles.backFace} src={card.avers} alt="Hero" />
+            </div>
+          </li>
+        ))}
+      </ul>
+      <FinalModal
+        isFinishModalOpen={isFinishModalOpen}
+        setIsFinishModalOpen={setIsFinishModalOpen}
+      />
+    </>
   );
 };
 

@@ -13,6 +13,8 @@ const initialState: IStartForm = {
   counterMatch: 0,
   firstCard: null,
   secondCard: null,
+  secondsStr: '00',
+  minutesStr: '00',
 };
 
 const gameSlice = createSlice({
@@ -29,7 +31,7 @@ const gameSlice = createSlice({
       const cardsArray = shuffle(cardData);
       let length = 0;
       if (action.payload === '') state.cardList = [];
-      if (action.payload === 'easy') length = 6;
+      if (action.payload === 'easy') length = 4;
       if (action.payload === 'medium') length = 18;
       if (action.payload === 'hard') length = 22;
       const gameArr: ICard[] = cardsArray.slice(0, length);
@@ -53,6 +55,12 @@ const gameSlice = createSlice({
     setSecondCard(state, action: PayloadAction<ICard | null>) {
       state.secondCard = action.payload;
     },
+    setSecondsStr(state, action: PayloadAction<string>) {
+      state.secondsStr = action.payload;
+    },
+    setMinutesStr(state, action: PayloadAction<string>) {
+      state.minutesStr = action.payload;
+    },
   },
 });
 
@@ -66,5 +74,7 @@ export const {
   incrementCounterMatch,
   setFirstCard,
   setSecondCard,
+  setSecondsStr,
+  setMinutesStr,
 } = gameSlice.actions;
 export default gameSlice.reducer;

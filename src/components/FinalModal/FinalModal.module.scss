@@ -1,0 +1,50 @@
+@import '../../styles/extension.scss';
+@import '../../styles/colors.scss';
+
+.finalWrapper {
+  @extend %centered;
+  flex-direction: column;
+  width: 250px;
+  gap: 10px;
+}
+
+.finalTitle {
+text-align: center;
+color: $red-color;
+font-weight: 700;
+font-size: 30px;
+}
+
+.finalText {
+  text-align: center;
+  color: $water-color;
+  font-weight: 400;
+  font-size: 26px;
+  white-space: nowrap;
+  }
+
+.finalTextValue {
+  color: $red-color;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.finalBtnsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.finalBtn {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: $temptess-color;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background-color: $yellow-color;
+    color: $text-color;
+  }
+}

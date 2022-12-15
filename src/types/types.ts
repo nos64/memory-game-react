@@ -8,6 +8,8 @@ export interface IStartForm {
   counterMatch: number;
   firstCard: ICard | null;
   secondCard: ICard | null;
+  secondsStr: string;
+  minutesStr: string;
 }
 
 export interface ICard {
