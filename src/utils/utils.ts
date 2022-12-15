@@ -1,14 +1,6 @@
-import { ICard } from '../types/types';
+import { ICard, ISavedPlayerObject } from '../types/types';
 
 export const shuffle = (arr: ICard[]) => arr.sort(() => 0.5 - Math.random());
-
-interface ISavedPlayerObject {
-  playerName: string;
-  difficulty: string;
-  minutesStr: string;
-  secondsStr: string;
-  moves: number;
-}
 
 export const saveInStorage = (params: ISavedPlayerObject): void => {
   const resultsArray =

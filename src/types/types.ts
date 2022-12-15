@@ -10,6 +10,7 @@ export interface IStartForm {
   secondCard: ICard | null;
   secondsStr: string;
   minutesStr: string;
+  resultsList: ISavedPlayerObject[] | [];
 }
 
 export interface ICard {
@@ -19,4 +20,12 @@ export interface ICard {
   isFliped: boolean;
   isBlocked: boolean;
   index: number;
+}
+
+export interface ISavedPlayerObject {
+  playerName: string;
+  difficulty: string;
+  minutesStr: string;
+  secondsStr: string;
+  moves: number;
 }
