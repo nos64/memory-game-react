@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import styles from './CardList.module.scss';
-// import Card from '../Card';
-import { useAppSelector } from '../../hooks/hooks';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import FinalModal from '../FinalModal';
+
 import { ROUTES } from '../../common/routes';
 import { ICard } from '../../types/types';
-import { useAppDispatch } from './../../hooks/hooks';
 import {
   changeMovesCounter,
-  incrementCounterMatch,
-  setFirstCard,
-  setSecondCard,
   setGameStart,
   togglePausedTimer,
   setResultsList,
 } from '../../store/reducers/gameSlice';
-import FinalModal from '../FinalModal';
 import { saveInStorage } from '../../utils/utils';
 
+import styles from './CardList.module.scss';
+
 const CardList = () => {
-  const cardList = useAppSelector((state) => state.game.cardList);
-  // const firstCard = useAppSelector((state) => state.game.firstCard);
-  // const secondCard = useAppSelector((state) => state.game.secondCard);
-  // const counterMatch = useAppSelector((state) => state.game.counterMatch);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const [cardsArray, setCardsArray] = useState<ICard[]>([]);
   const [firstCard, setFirstCard] = useState<ICard | null>(null);
   const [secondCard, setSecondCard] = useState<ICard | null>(null);
@@ -33,11 +27,13 @@ const CardList = () => {
   const [counter, setCounter] = useState(0);
   const [isFinishModalOpen, setIsFinishModalOpen] = useState(false);
 
+  const cardList = useAppSelector((state) => state.game.cardList);
   const playerName = useAppSelector((state) => state.game.playerName);
   const difficulty = useAppSelector((state) => state.game.difficulty);
   const secondsStr = useAppSelector((state) => state.game.secondsStr);
   const minutesStr = useAppSelector((state) => state.game.minutesStr);
   const moves = useAppSelector((state) => state.game.moves);
+
   useEffect(() => {
     if (!cardList.length) {
       navigate(`${ROUTES.START}`);
@@ -51,26 +47,21 @@ const CardList = () => {
     if (index === firstCard?.index) {
       return;
     }
-    const newCardArray = cardsArray.map((card, i) =>
+    const modifyCardArray = cardsArray.map((card, i) =>
       index === i ? { ...card, isFliped: true } : { ...card }
     );
-    setCardsArray(newCardArray);
+    setCardsArray(modifyCardArray);
     if (!hasFlipedCard) {
       setHasFlipedCard(true);
       const first = cardsArray.find((card, i) => i === index);
       if (first) {
-        // dispatch(setFirstCard(first));
         setFirstCard(first);
         return;
       }
     }
     const second = cardsArray.find((card, i) => i === index);
     if (second) {
-      // dispatch(setSecondCard(second));
       setSecondCard(second);
-      // checkForMatch();
-      // dispatch(changeMovesCounter(1));
-      // checkWin();
     }
   };
 
