@@ -10,7 +10,8 @@
   flex-direction: column;
   flex: 1 1 auto;
   overflow: auto;
-
+  user-select: none;
+  
   &::after {
     position: absolute;
     top: 0;

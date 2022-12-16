@@ -28,9 +28,9 @@ const gameSlice = createSlice({
       const cardsArray = shuffle(cardData);
       let length = 0;
       if (action.payload === '') state.cardList = [];
-      if (action.payload === 'easy') length = 12;
+      if (action.payload === 'easy') length = 9;
       if (action.payload === 'medium') length = 18;
-      if (action.payload === 'hard') length = 22;
+      if (action.payload === 'hard') length = 27;
       const gameArr: ICard[] = cardsArray.slice(0, length);
       state.cardList = shuffle([...gameArr, ...gameArr]);
     },

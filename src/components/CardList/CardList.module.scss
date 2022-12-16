@@ -2,17 +2,18 @@
 @import '../../styles/colors.scss';
 
 .gameArea {
-  width: 90%;
-  @extend %centered;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
   gap: 10px;
-	flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  min-height: 70vh;
   margin-left: 50%;
   transform: translate(-50%);
   margin-bottom: 10px;
   transition: all .3s ease-in-out;
 }
-
-
 
 .noClick {
   pointer-events: none;
@@ -54,14 +55,22 @@
   transform: rotateY(180deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+  .gameArea {
+    gap: 5px;
+  }
+
   .memoryCard {
     width: 90px;
     height: 90px;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 850px) {
+  .gameArea {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
   .memoryCard {
     width: 80px;
     height: 80px;
@@ -69,6 +78,10 @@
 }
 
 @media (max-width: 600px) {
+  .gameArea {
+    align-content: start;
+  }
+
   .memoryCard {
     width: 70px;
     height: 70px;
@@ -87,5 +100,12 @@
   .memoryCard {
     width: 50px;
     height: 50px;
+  }
+}
+
+@media (max-width: 320px) {
+  .memoryCard {
+    width: 40px;
+    height: 40px;
   }
 }
