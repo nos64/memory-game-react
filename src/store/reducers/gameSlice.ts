@@ -12,6 +12,8 @@ const initialState: IStartForm = {
   pausedTimer: false,
   secondsStr: '00',
   minutesStr: '00',
+  minutes: 0,
+  seconds: 0,
 };
 
 const gameSlice = createSlice({
@@ -52,6 +54,15 @@ const gameSlice = createSlice({
     setMinutesStr(state, action: PayloadAction<string>) {
       state.minutesStr = action.payload;
     },
+    setSeconds(state, action: PayloadAction<number>) {
+      state.seconds = action.payload;
+    },
+    setMinutes(state, action: PayloadAction<number>) {
+      state.minutes = action.payload;
+    },
+    resetSeconds(state) {
+      state.seconds = 0;
+    },
   },
 });
 
@@ -65,5 +76,8 @@ export const {
   togglePausedTimer,
   setSecondsStr,
   setMinutesStr,
+  setSeconds,
+  setMinutes,
+  resetSeconds,
 } = gameSlice.actions;
 export default gameSlice.reducer;

@@ -40,7 +40,11 @@ const CardList = () => {
     }
     const gameArray = cardList.map((card, index) => ({ ...card, index: index }));
     setCardsArray(gameArray);
-  }, []);
+    setFirstCard(null);
+    setSecondCard(null);
+    setHasFlipedCard(false);
+    setCounter(0);
+  }, [cardList]);
 
   const handleClickCard = (index: number) => {
     if (lockBoard) return;

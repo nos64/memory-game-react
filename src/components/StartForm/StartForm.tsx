@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import ValidationErrorMessage from './ValidationErrorMessage';
 
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { ROUTES } from '../../common/routes';
 import { IStartForm } from '../../types/types';
@@ -22,10 +22,15 @@ const StartForm = () => {
     register,
     reset,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<IStartForm>();
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const playerName = useAppSelector((state) => state.game.playerName);
+
+  const [name, setName] = useState(playerName);
 
   const onSubmit = (data: IStartForm) => {
     dispatch(setUserName(data.playerName));
@@ -36,15 +41,21 @@ const StartForm = () => {
     navigate(`${ROUTES.GAME}`);
   };
 
+  const onChange = () => {
+    const currentFieldsValues = getValues();
+    setName(currentFieldsValues.playerName);
+  };
+
   return (
     <div className={styles.startFormWrapper}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
         <input
           className={styles.nameInput}
           type="text"
           placeholder="Enter your name"
           autoFocus
           autoComplete="off"
+          value={name || ''}
           maxLength={20}
           {...register('playerName', {
             required: true,

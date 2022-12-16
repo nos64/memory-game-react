@@ -6,6 +6,7 @@ import MovesCounter from './MovesCounter';
 import Timer from './Timer';
 import ResetGameModal from './ResetGameModal';
 import ResultsModal from './ResultsModal';
+import NewGameModal from './NewGameModal';
 
 import { useAppDispatch } from '../../hooks/hooks';
 import { togglePausedTimer } from '../../store/reducers/gameSlice';
@@ -14,17 +15,22 @@ import styles from './ScorePanel.module.scss';
 
 const ScorePanel = () => {
   const dispatch = useAppDispatch();
+  const [isNewGameActive, setIsNewGameActive] = useState(false);
   const [isResetModalActive, setIsResetModalActive] = useState(false);
   const [isResultsModalActive, setIsResultsModalActive] = useState(false);
 
-  const handleResetButtonClick = () => {
-    setIsResetModalActive(true);
+  const handleNewGameButtonClick = () => {
     dispatch(togglePausedTimer(true));
+    setIsNewGameActive(true);
+  };
+  const handleResetButtonClick = () => {
+    dispatch(togglePausedTimer(true));
+    setIsResetModalActive(true);
   };
 
   const handleResultsButtonClick = () => {
-    setIsResultsModalActive(true);
     dispatch(togglePausedTimer(true));
+    setIsResultsModalActive(true);
   };
 
   return (
@@ -34,6 +40,9 @@ const ScorePanel = () => {
         <Difficulty />
         <MovesCounter />
         <Timer />
+        <button className={styles.panelButton} type="button" onClick={handleNewGameButtonClick}>
+          New Game
+        </button>
         <button className={styles.panelButton} type="button" onClick={handleResetButtonClick}>
           Reset
         </button>
@@ -49,6 +58,7 @@ const ScorePanel = () => {
         isResultsModalActive={isResultsModalActive}
         setIsResultsModalActive={setIsResultsModalActive}
       />
+      <NewGameModal isNewGameActive={isNewGameActive} setIsNewGameActive={setIsNewGameActive} />
     </>
   );
 };

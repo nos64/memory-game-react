@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/hooks';
-import { setSecondsStr, setMinutesStr } from '../../../store/reducers/gameSlice';
+import {
+  setSecondsStr,
+  setMinutesStr,
+  setSeconds,
+  setMinutes,
+} from '../../../store/reducers/gameSlice';
 
 import styles from './Timer.module.scss';
 
@@ -11,21 +16,30 @@ const Timer = () => {
   const pausedTimer = useAppSelector((state) => state.game.pausedTimer);
   const secondsStr = useAppSelector((state) => state.game.secondsStr);
   const minutesStr = useAppSelector((state) => state.game.minutesStr);
-  const [[minutes, seconds], setTime] = useState([0, 0]);
+  const minutes = useAppSelector((state) => state.game.minutes);
+  const seconds = useAppSelector((state) => state.game.seconds);
 
   const tick = () => {
     if (pausedTimer) return;
-    seconds > 58 ? setTime([minutes + 1, 0]) : setTime([minutes, seconds + 1]);
+    if (seconds > 58) {
+      dispatch(setMinutes(minutes + 1));
+      dispatch(setSeconds(0));
+    } else dispatch(setSeconds(seconds + 1));
     seconds > 9 ? dispatch(setSecondsStr(`${seconds}`)) : dispatch(setSecondsStr(`0${seconds}`));
     minutes > 9 ? dispatch(setMinutesStr(`${minutes}`)) : dispatch(setMinutesStr(`0${minutes}`));
   };
+
+  useEffect(() => {
+    dispatch(setSeconds(seconds));
+    dispatch(setMinutes(minutes));
+  }, [dispatch, seconds, minutes]);
 
   useEffect(() => {
     if (isGameStart) {
       const timerID = setInterval(() => tick(), 1000);
       return () => clearInterval(timerID);
     }
-  });
+  }, [isGameStart, pausedTimer, seconds, minutes]);
 
   return (
     <div className={styles.fieldWrapper}>
