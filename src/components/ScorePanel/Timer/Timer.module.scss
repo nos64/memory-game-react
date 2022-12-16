@@ -8,14 +8,18 @@
 .paramField {
   display: flex;
   justify-content: space-between;
-  width: 160px;
   color: $red-color;
   font-size: 24px;
   font-weight: 700;
-  padding: 0 15px;
 }
 
 .dighit {
-  width: 70px;
+  width: 40px;
   text-align: center;
+}
+
+@media (max-width: 720px) {
+  .paramField {
+    font-size: 20px;
+  }
 }

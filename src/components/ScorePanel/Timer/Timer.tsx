@@ -31,9 +31,11 @@ const Timer = () => {
     <div className={styles.fieldWrapper}>
       Timer:
       <div className={styles.paramField}>
-        <div className={styles.dighit}>{`${minutesStr} min`}</div>
+        <div className={styles.dighit}>{minutesStr}</div>
+        <span>min</span>
         <span>:</span>
-        <div className={styles.dighit}>{`${secondsStr} sec`}</div>
+        <div className={styles.dighit}>{secondsStr}</div>
+        <span>sec</span>
       </div>
     </div>
   );
