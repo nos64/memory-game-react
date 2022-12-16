@@ -1,17 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import ModalWrapper from '../../ModalWrapper';
 
-import { useAppDispatch } from '../../../hooks/hooks';
-import { ROUTES } from '../../../common/routes';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import {
-  setUserName,
-  setUserDifficulty,
   setCardList,
-  setGameStart,
   togglePausedTimer,
   resetMovesCounter,
+  setMinutes,
+  setSeconds,
+  setSecondsStr,
+  setMinutesStr,
+  setGameStart,
 } from '../../../store/reducers/gameSlice';
 
 import styles from './ResetGameModal.module.scss';
@@ -26,7 +26,7 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
   setIsResetModalActive,
 }) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const difficulty = useAppSelector((state) => state.game.difficulty);
 
   const handleCloseModal = () => {
     setIsResetModalActive(false);
@@ -34,13 +34,15 @@ const ResetGameModal: React.FC<IResetGameModal> = ({
   };
 
   const handleResetButtonClick = () => {
-    dispatch(setUserName(''));
-    dispatch(setUserDifficulty(''));
-    dispatch(setCardList(''));
+    dispatch(setMinutes(0));
+    dispatch(setSeconds(0));
+    dispatch(setSecondsStr('00'));
+    dispatch(setMinutesStr('00'));
+    dispatch(setCardList(difficulty));
     dispatch(resetMovesCounter());
-    dispatch(setGameStart(false));
     dispatch(togglePausedTimer(false));
-    navigate(`${ROUTES.START}`);
+    dispatch(setGameStart(true));
+    setIsResetModalActive(false);
   };
 
   return (

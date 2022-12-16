@@ -1,9 +1,10 @@
+@import '../../styles/extension.scss';
+
 .container {
   display: flex;
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
   flex-direction: column;
   flex: 1 1 auto;
 }

@@ -9,8 +9,12 @@ import {
   resetMovesCounter,
   setCardList,
   setUserDifficulty,
-  setUserName,
   togglePausedTimer,
+  setGameStart,
+  setMinutes,
+  setSeconds,
+  setSecondsStr,
+  setMinutesStr,
 } from '../../store/reducers/gameSlice';
 
 import styles from './FinalModal.module.scss';
@@ -32,11 +36,15 @@ const FinalModal: React.FC<IFinalModalProps> = ({ isFinishModalOpen, setIsFinish
   };
 
   const handleNewGameButtonClick = () => {
-    dispatch(setUserName(''));
     dispatch(setUserDifficulty(''));
     dispatch(setCardList(''));
     dispatch(resetMovesCounter());
     dispatch(togglePausedTimer(false));
+    dispatch(setGameStart(false));
+    dispatch(setMinutes(0));
+    dispatch(setSeconds(0));
+    dispatch(setSecondsStr('00'));
+    dispatch(setMinutesStr('00'));
     navigate(`${ROUTES.START}`);
   };
 

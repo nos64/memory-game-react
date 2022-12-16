@@ -21,6 +21,12 @@ import spiderMan1 from '../assets/images/cards/spider-man_5-5.jpg';
 import spiderMan2 from '../assets/images/cards/spider-man1_5-5.jpg';
 import thor1 from '../assets/images/cards/thor_5-5.jpg';
 import thor2 from '../assets/images/cards/thor1_5-5.jpg';
+import drax from '../assets/images/cards/drax_5-5.jpg';
+import fury2 from '../assets/images/cards/fury2_5-5.jpg';
+import gamora from '../assets/images/cards/gamora_5-5.jpg';
+import nebula from '../assets/images/cards/nebula_5-5.jpg';
+import tanos from '../assets/images/cards/tanos_5-5.jpg';
+import wasp from '../assets/images/cards/wasp_5-5.jpg';
 
 export const cardData = [
   {
@@ -194,6 +200,54 @@ export const cardData = [
   {
     id: '22',
     avers: thor2,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '23',
+    avers: drax,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '24',
+    avers: fury2,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '25',
+    avers: gamora,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '26',
+    avers: nebula,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '27',
+    avers: tanos,
+    reverse: reverse,
+    isFliped: false,
+    isBlocked: false,
+    index: 0,
+  },
+  {
+    id: '28',
+    avers: wasp,
     reverse: reverse,
     isFliped: false,
     isBlocked: false,

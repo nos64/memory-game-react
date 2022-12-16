@@ -7,7 +7,7 @@ const MovesCounter = () => {
   return (
     <div className={styles.paramWrapper}>
       Moves:
-      <span className={styles.paramField}>{moves}</span>
+      <div className={styles.paramField}>{moves}</div>
     </div>
   );
 };

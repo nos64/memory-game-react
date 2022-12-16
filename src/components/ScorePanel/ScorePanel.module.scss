@@ -20,6 +20,10 @@
   padding: 0 15px;
 }
 
+.buttonWrapper {
+  @extend %centered;
+}
+
 .panelButton {
   background-color: $temptess-color;
   padding: 10px;

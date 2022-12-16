@@ -7,6 +7,8 @@ export interface IStartForm {
   pausedTimer: boolean;
   secondsStr: string;
   minutesStr: string;
+  minutes: number;
+  seconds: number;
 }
 
 export interface ICard {
