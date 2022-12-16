@@ -49,3 +49,57 @@
     color: $text-color;
   }
 }
+
+
+@media (max-width: 600px) {
+  .resultsTable {
+    font-size: 16px;
+  }
+
+  .tableHead {
+    font-size: 16px;
+  }
+
+  .tableData {
+    @include contentLimit(1);
+    text-align: center;
+    width: 100px;
+    padding: 0 10px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .tableData {
+    @include contentLimit(1);
+    text-align: center;
+    width: 80px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .resultsTable {
+    font-size: 14px;
+  }
+
+  .tableHead {
+    font-size: 14px;
+  }
+
+  .tableData {
+    @include contentLimit(1);
+    text-align: center;
+    width: 60px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  .tableData {
+    @include contentLimit(1);
+    text-align: center;
+    width: 40px;
+    padding: 0 5px;
+  }
+}

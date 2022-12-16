@@ -40,15 +40,17 @@ const ScorePanel = () => {
         <Difficulty />
         <MovesCounter />
         <Timer />
-        <button className={styles.panelButton} type="button" onClick={handleNewGameButtonClick}>
-          New Game
-        </button>
-        <button className={styles.panelButton} type="button" onClick={handleResetButtonClick}>
-          Reset
-        </button>
-        <button className={styles.panelButton} type="button" onClick={handleResultsButtonClick}>
-          Results
-        </button>
+        <div className={styles.buttonWrapper}>
+          <button className={styles.panelButton} type="button" onClick={handleNewGameButtonClick}>
+            New Game
+          </button>
+          <button className={styles.panelButton} type="button" onClick={handleResetButtonClick}>
+            Restart
+          </button>
+          <button className={styles.panelButton} type="button" onClick={handleResultsButtonClick}>
+            Results
+          </button>
+        </div>
       </div>
       <ResetGameModal
         isResetModalActive={isResetModalActive}
