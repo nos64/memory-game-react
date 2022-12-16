@@ -13,6 +13,7 @@ import {
   setSecondCard,
   setGameStart,
   togglePausedTimer,
+  setResultsList,
 } from '../../store/reducers/gameSlice';
 import FinalModal from '../FinalModal';
 import { saveInStorage } from '../../utils/utils';
@@ -103,7 +104,7 @@ const CardList = () => {
       dispatch(setGameStart(false));
       dispatch(togglePausedTimer(true));
       setIsFinishModalOpen(true);
-      saveInStorage({ playerName, difficulty, minutesStr, secondsStr, moves });
+      dispatch(setResultsList({ playerName, difficulty, minutesStr, secondsStr, moves }));
     }
   };
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { shuffle } from '../../utils/utils';
+import { saveInStorage, shuffle } from '../../utils/utils';
 import { ICard, ISavedPlayerObject, IStartForm } from '../../types/types';
 import { cardData } from '../../common/cardData';
 
@@ -65,8 +65,8 @@ const gameSlice = createSlice({
     setMinutesStr(state, action: PayloadAction<string>) {
       state.minutesStr = action.payload;
     },
-    setResultsList(state, action: PayloadAction<ISavedPlayerObject[] | []>) {
-      // state.resultsList = action.payload;
+    setResultsList(state, action: PayloadAction<ISavedPlayerObject>) {
+      state.resultsList = saveInStorage(action.payload);
     },
   },
 });
@@ -84,5 +84,6 @@ export const {
   setSecondCard,
   setSecondsStr,
   setMinutesStr,
+  setResultsList,
 } = gameSlice.actions;
 export default gameSlice.reducer;
