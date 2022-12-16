@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './PlayerName.module.scss';
 import { useAppSelector } from '../../../hooks/hooks';
+
+import styles from './PlayerName.module.scss';
 
 const PlayerName = () => {
   const playerName = useAppSelector((state) => state.game.playerName);

@@ -1,11 +1,14 @@
-import ModalWrapper from '../../ModalWrapper';
 import React, { useEffect, useState } from 'react';
-import styles from './ResultsModal.module.scss';
-import { togglePausedTimer, getResultsList } from '../../../store/reducers/gameSlice';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { getFromStorage } from '../../../utils/utils';
+
+import ModalWrapper from '../../ModalWrapper';
 import ResultRow from './ResultRow';
+
+import { useAppDispatch } from '../../../hooks/hooks';
+import { getFromStorage } from '../../../utils/utils';
 import { ISavedPlayerObject } from '../../../types/types';
+import { togglePausedTimer } from '../../../store/reducers/gameSlice';
+
+import styles from './ResultsModal.module.scss';
 
 interface IResultsModal {
   isResultsModalActive: boolean;
@@ -16,14 +19,7 @@ const ResultsModal: React.FC<IResultsModal> = ({
   setIsResultsModalActive,
 }) => {
   const dispatch = useAppDispatch();
-  const resultsList = useAppSelector((state) => state.game.resultsList);
   const [results, setResults] = useState<ISavedPlayerObject[]>([]);
-  // useEffect(() => {
-  //   if (isResultsModalActive) {
-  //     resultsList = getFromStorage();
-  //     console.log(resultsList);
-  //   }
-  // }, [isResultsModalActive]);
 
   useEffect(() => {
     if (isResultsModalActive) {

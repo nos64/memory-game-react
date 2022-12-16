@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+
 import FinalModal from '../FinalModal';
 
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { saveInStorage } from '../../utils/utils';
 import { ROUTES } from '../../common/routes';
 import { ICard } from '../../types/types';
 import {
   changeMovesCounter,
   setGameStart,
   togglePausedTimer,
-  setResultsList,
 } from '../../store/reducers/gameSlice';
-import { saveInStorage } from '../../utils/utils';
 
 import styles from './CardList.module.scss';
 
@@ -54,15 +54,11 @@ const CardList = () => {
     if (!hasFlipedCard) {
       setHasFlipedCard(true);
       const first = cardsArray.find((card, i) => i === index);
-      if (first) {
-        setFirstCard(first);
-        return;
-      }
+      first && setFirstCard(first);
+      return;
     }
     const second = cardsArray.find((card, i) => i === index);
-    if (second) {
-      setSecondCard(second);
-    }
+    second && setSecondCard(second);
   };
 
   useEffect(() => {
@@ -78,34 +74,33 @@ const CardList = () => {
 
   const checkForMatch = () => {
     if (firstCard?.id === secondCard?.id) {
-      // dispatch(incrementCounterMatch(1));
       setCounter((counter) => (counter += 1));
       const modifyCards = cardsArray.map((card) =>
         card.isFliped ? { ...card, isFliped: true, isBlocked: true } : { ...card }
       );
       setCardsArray(modifyCards);
       resetBoard();
-      // console.log('counterMatch: ', counterMatch);
     } else {
       unflipCards();
     }
   };
+
   const checkWin = () => {
     if (counter && cardsArray.length && counter === cardsArray.length / 2) {
       dispatch(setGameStart(false));
       dispatch(togglePausedTimer(true));
       setIsFinishModalOpen(true);
-      dispatch(setResultsList({ playerName, difficulty, minutesStr, secondsStr, moves }));
+      saveInStorage({ playerName, difficulty, minutesStr, secondsStr, moves });
     }
   };
 
   const unflipCards = () => {
     setLockBoard(true);
     setTimeout(() => {
-      const thirdClickArray = cardsArray.map((card) =>
+      const unflipedArray = cardsArray.map((card) =>
         card.isBlocked ? { ...card } : { ...card, isFliped: false }
       );
-      setCardsArray(thirdClickArray);
+      setCardsArray(unflipedArray);
       resetBoard();
     }, 1000);
   };
@@ -113,8 +108,6 @@ const CardList = () => {
   const resetBoard = () => {
     setLockBoard(false);
     setHasFlipedCard(false);
-    // dispatch(setFirstCard(null));
-    // dispatch(setSecondCard(null));
     setFirstCard(null);
     setSecondCard(null);
   };

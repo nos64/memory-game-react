@@ -1,8 +1,10 @@
-import Container from '../../components/Container';
 import React from 'react';
-import styles from './NotFoundPage.module.scss';
+import Container from '../../components/Container';
+
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../common/routes';
+
+import styles from './NotFoundPage.module.scss';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const NotFoundPage = () => {
       <p className={styles.description}> Sorry, Page Not Found</p>
       <div className={styles.btnContainer}>
         <button className={styles.button} type="button" onClick={handleHomeBtnClick}>
-          Go Start
+          Go to Start
         </button>
       </div>
     </Container>

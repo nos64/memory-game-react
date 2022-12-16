@@ -1,7 +1,9 @@
-import ModalWrapper from '../../ModalWrapper';
 import React from 'react';
-import styles from './ResetGameModal.module.scss';
 import { useNavigate } from 'react-router-dom';
+
+import ModalWrapper from '../../ModalWrapper';
+
+import { useAppDispatch } from '../../../hooks/hooks';
 import { ROUTES } from '../../../common/routes';
 import {
   setUserName,
@@ -11,7 +13,8 @@ import {
   togglePausedTimer,
   resetMovesCounter,
 } from '../../../store/reducers/gameSlice';
-import { useAppDispatch } from '../../../hooks/hooks';
+
+import styles from './ResetGameModal.module.scss';
 
 interface IResetGameModal {
   isResetModalActive: boolean;

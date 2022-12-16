@@ -1,7 +1,8 @@
-import ScorePanel from '../../components/ScorePanel';
 import React from 'react';
-import styles from './GamePage/module.scss';
 import CardList from '../../components/CardList';
+import ScorePanel from '../../components/ScorePanel';
+
+import styles from './GamePage/module.scss';
 
 const GamePage = () => {
   return (

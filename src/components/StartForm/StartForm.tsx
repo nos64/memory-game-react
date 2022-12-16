@@ -1,17 +1,21 @@
-import { ROUTES } from '../../common/routes';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import styles from './StartForm.module.scss';
-import { IStartForm } from '../../types/types';
+
+import ValidationErrorMessage from './ValidationErrorMessage';
+
 import { useAppDispatch } from '../../hooks/hooks';
+
+import { ROUTES } from '../../common/routes';
+import { IStartForm } from '../../types/types';
 import {
   setUserName,
   setUserDifficulty,
   setCardList,
   setGameStart,
 } from '../../store/reducers/gameSlice';
-import ValidationErrorMessage from '../ValidationErrorMessage';
+
+import styles from './StartForm.module.scss';
 
 const StartForm = () => {
   const {
@@ -25,7 +29,6 @@ const StartForm = () => {
 
   const onSubmit = (data: IStartForm) => {
     dispatch(setUserName(data.playerName));
-    // localStorage.setItem('playerName', data.playerName);
     dispatch(setUserDifficulty(data.difficulty));
     dispatch(setCardList(data.difficulty));
     dispatch(setGameStart(true));

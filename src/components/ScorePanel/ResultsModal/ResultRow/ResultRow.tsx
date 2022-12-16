@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { ISavedPlayerObject } from '../../../../types/types';
+
 import styles from './ResultRow.module.scss';
 
 const ResultRow: React.FC<ISavedPlayerObject> = ({

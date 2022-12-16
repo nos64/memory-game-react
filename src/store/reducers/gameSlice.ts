@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getFromStorage, saveInStorage, shuffle } from '../../utils/utils';
-import { ICard, ISavedPlayerObject, IStartForm } from '../../types/types';
+import { shuffle } from '../../utils/utils';
+import { ICard, IStartForm } from '../../types/types';
 import { cardData } from '../../common/cardData';
 
 const initialState: IStartForm = {
@@ -10,12 +10,8 @@ const initialState: IStartForm = {
   cardList: [],
   isGameStart: false,
   pausedTimer: false,
-  counterMatch: 0,
-  firstCard: null,
-  secondCard: null,
   secondsStr: '00',
   minutesStr: '00',
-  resultsList: [],
 };
 
 const gameSlice = createSlice({
@@ -32,7 +28,7 @@ const gameSlice = createSlice({
       const cardsArray = shuffle(cardData);
       let length = 0;
       if (action.payload === '') state.cardList = [];
-      if (action.payload === 'easy') length = 2;
+      if (action.payload === 'easy') length = 12;
       if (action.payload === 'medium') length = 18;
       if (action.payload === 'hard') length = 22;
       const gameArr: ICard[] = cardsArray.slice(0, length);
@@ -50,26 +46,11 @@ const gameSlice = createSlice({
     resetMovesCounter(state) {
       state.moves = 0;
     },
-    incrementCounterMatch(state, action: PayloadAction<number>) {
-      state.counterMatch += action.payload;
-    },
-    setFirstCard(state, action: PayloadAction<ICard | null>) {
-      state.firstCard = action.payload;
-    },
-    setSecondCard(state, action: PayloadAction<ICard | null>) {
-      state.secondCard = action.payload;
-    },
     setSecondsStr(state, action: PayloadAction<string>) {
       state.secondsStr = action.payload;
     },
     setMinutesStr(state, action: PayloadAction<string>) {
       state.minutesStr = action.payload;
-    },
-    setResultsList(state, action: PayloadAction<ISavedPlayerObject>) {
-      state.resultsList = saveInStorage(action.payload);
-    },
-    getResultsList(state) {
-      state.resultsList = getFromStorage();
     },
   },
 });
@@ -82,12 +63,7 @@ export const {
   setCardList,
   setGameStart,
   togglePausedTimer,
-  incrementCounterMatch,
-  setFirstCard,
-  setSecondCard,
   setSecondsStr,
   setMinutesStr,
-  setResultsList,
-  getResultsList,
 } = gameSlice.actions;
 export default gameSlice.reducer;
