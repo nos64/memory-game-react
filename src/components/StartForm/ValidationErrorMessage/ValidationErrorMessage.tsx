@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './ValidationErrorMessage.module.scss';
 
-interface Props {
+interface IErrorMessageProps {
   message?: string;
 }
 
-const ValidationErrorMessage = ({ message }: Props) => {
+const ValidationErrorMessage: React.FC<IErrorMessageProps> = ({ message }) => {
   return <div className={style.errorMessage}>{message}</div>;
 };
 

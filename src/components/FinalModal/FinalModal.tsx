@@ -1,17 +1,17 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import React from 'react';
-import styles from './FinalModal.module.scss';
+import ModalWrapper from '../ModalWrapper';
 import { useNavigate } from 'react-router-dom';
 import {
   resetMovesCounter,
   setCardList,
-  setGameStart,
   setUserDifficulty,
   setUserName,
   togglePausedTimer,
 } from '../../store/reducers/gameSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { ROUTES } from '../../common/routes';
-import ModalWrapper from '../ModalWrapper';
+
+import styles from './FinalModal.module.scss';
 
 interface IFinalModalProps {
   isFinishModalOpen: boolean;
@@ -20,10 +20,11 @@ interface IFinalModalProps {
 
 const FinalModal: React.FC<IFinalModalProps> = ({ isFinishModalOpen, setIsFinishModalOpen }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const secondsStr = useAppSelector((state) => state.game.secondsStr);
   const minutesStr = useAppSelector((state) => state.game.minutesStr);
-  const navigate = useNavigate();
   const moves = useAppSelector((state) => state.game.moves);
+
   const handleCloseModal = () => {
     setIsFinishModalOpen(false);
   };
