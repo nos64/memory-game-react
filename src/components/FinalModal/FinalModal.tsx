@@ -1,6 +1,10 @@
 import React from 'react';
-import ModalWrapper from '../ModalWrapper';
 import { useNavigate } from 'react-router-dom';
+
+import ModalWrapper from '../ModalWrapper';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { ROUTES } from '../../common/routes';
 import {
   resetMovesCounter,
   setCardList,
@@ -8,8 +12,6 @@ import {
   setUserName,
   togglePausedTimer,
 } from '../../store/reducers/gameSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { ROUTES } from '../../common/routes';
 
 import styles from './FinalModal.module.scss';
 

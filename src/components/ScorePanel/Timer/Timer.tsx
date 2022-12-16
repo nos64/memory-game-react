@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styles from './Timer.module.scss';
+import { useEffect, useState } from 'react';
+
 import { useAppSelector, useAppDispatch } from '../../../hooks/hooks';
 import { setSecondsStr, setMinutesStr } from '../../../store/reducers/gameSlice';
+
+import styles from './Timer.module.scss';
+
 const Timer = () => {
   const dispatch = useAppDispatch();
   const isGameStart = useAppSelector((state) => state.game.isGameStart);
@@ -9,8 +12,6 @@ const Timer = () => {
   const secondsStr = useAppSelector((state) => state.game.secondsStr);
   const minutesStr = useAppSelector((state) => state.game.minutesStr);
   const [[minutes, seconds], setTime] = useState([0, 0]);
-  // const [secondsStr, setSecondsStr] = useState('00');
-  // const [minutesStr, setMinutesStr] = useState('00');
 
   const tick = () => {
     if (pausedTimer) return;

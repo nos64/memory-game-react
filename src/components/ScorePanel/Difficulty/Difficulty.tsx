@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './Difficulty.module.scss';
 import { useAppSelector } from '../../../hooks/hooks';
+
+import styles from './Difficulty.module.scss';
 
 const Difficulty = () => {
   const difficulty = useAppSelector((state) => state.game.difficulty);

@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './MovesCounter.module.scss';
 import { useAppSelector } from '../../../hooks/hooks';
+
+import styles from './MovesCounter.module.scss';
 
 const MovesCounter = () => {
   const moves = useAppSelector((state) => state.game.moves);

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import PlayerName from './PlayerName';
 import Difficulty from './Difficulty';
 import MovesCounter from './MovesCounter';

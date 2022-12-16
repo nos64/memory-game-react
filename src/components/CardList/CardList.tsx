@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+
 import FinalModal from '../FinalModal';
 
+import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import { saveInStorage } from '../../utils/utils';
 import { ROUTES } from '../../common/routes';
 import { ICard } from '../../types/types';
