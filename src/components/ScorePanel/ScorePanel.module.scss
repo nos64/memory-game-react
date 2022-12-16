@@ -6,10 +6,11 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 15px;
+  font-size: 24px;
 }
 
 .fieldWrapper {
-  display: flex;
+  @extend %centered;
 }
 
 .paramField {
@@ -30,5 +31,12 @@
   &:hover{
   background-color: $yellow-color;
   color: $black-color;
+  }
+}
+
+@media (max-width: 720px) {
+  .resultsPanel {
+    gap: 5px;
+    font-size: 20px;
   }
 }

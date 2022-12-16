@@ -12,3 +12,9 @@
   font-weight: 700;
   padding: 0 15px;
 }
+
+@media (max-width: 720px) {
+  .paramField {
+    font-size: 20px;
+  }
+}
