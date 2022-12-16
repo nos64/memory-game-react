@@ -22,5 +22,7 @@ export const saveInStorage = (params: ISavedPlayerObject) => {
 };
 
 export const getFromStorage = () => {
-  return JSON.parse(localStorage.getItem('results') as string) || <ISavedPlayerObject[]>[];
+  const resultsArray =
+    JSON.parse(localStorage.getItem('results') as string) || <ISavedPlayerObject[]>[];
+  return resultsArray;
 };

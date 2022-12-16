@@ -1,9 +1,11 @@
 import ModalWrapper from '../../ModalWrapper';
 import React, { useEffect, useState } from 'react';
 import styles from './ResultsModal.module.scss';
-import { togglePausedTimer } from '../../../store/reducers/gameSlice';
+import { togglePausedTimer, getResultsList } from '../../../store/reducers/gameSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { getFromStorage } from '../../../utils/utils';
+import ResultRow from './ResultRow';
+import { ISavedPlayerObject } from '../../../types/types';
 
 interface IResultsModal {
   isResultsModalActive: boolean;
@@ -15,10 +17,19 @@ const ResultsModal: React.FC<IResultsModal> = ({
 }) => {
   const dispatch = useAppDispatch();
   const resultsList = useAppSelector((state) => state.game.resultsList);
-  // const [results, setResults] = useState(getFromStorage());
+  const [results, setResults] = useState<ISavedPlayerObject[]>([]);
+  // useEffect(() => {
+  //   if (isResultsModalActive) {
+  //     resultsList = getFromStorage();
+  //     console.log(resultsList);
+  //   }
+  // }, [isResultsModalActive]);
+
   useEffect(() => {
-    isResultsModalActive && console.log(resultsList);
-  }, [isResultsModalActive, resultsList]);
+    if (isResultsModalActive) {
+      setResults(getFromStorage());
+    }
+  }, [isResultsModalActive]);
 
   const closeModal = () => {
     setIsResultsModalActive(false);
@@ -29,7 +40,7 @@ const ResultsModal: React.FC<IResultsModal> = ({
     <ModalWrapper modalActive={isResultsModalActive} setModalActive={closeModal}>
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>Results</h2>
-        {/* <table className={styles.resultsTable}>
+        <table className={styles.resultsTable}>
           <thead className={styles.tableHead}>
             <tr className={styles.tableRow}>
               <th className={styles.tableData}>Name</th>
@@ -38,19 +49,12 @@ const ResultsModal: React.FC<IResultsModal> = ({
               <th className={styles.tableData}>Time</th>
             </tr>
           </thead>
-          <ul className={styles.resultsList}>
-            <li className={styles.resultItem}>
-              <table>
-                <tr className={styles.tableRow}>
-                  <td className={styles.tableData}>Mikhail4141414142222</td>
-                  <td className={styles.tableData}>Medium</td>
-                  <td className={styles.tableData}>123411</td>
-                  <td className={styles.tableData}>99:99</td>
-                </tr>
-              </table>
-            </li>
-          </ul>
-        </table> */}
+          <tbody>
+            {results.map((row, index) => (
+              <ResultRow key={index} {...row} />
+            ))}
+          </tbody>
+        </table>
         <button className={styles.resultCloseButton} onClick={closeModal}>
           Close
         </button>
